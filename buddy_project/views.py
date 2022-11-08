@@ -1,6 +1,6 @@
 from urllib import request
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
+from django.forms import CreateUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
@@ -54,12 +54,7 @@ def dashboard (request):
     members = Members.objects.all().order_by('name')
     context = {'members': members}
     return render (request, 'dashboard.html', context)
-"""
-    MembersForm = MembersForm(instance=request.user.profile)
-    context = {
-        'MembersForm':MembersForm
-    }
-"""
+
 
 def handle_not_found (request, exception):
     return redirect('homepage')
